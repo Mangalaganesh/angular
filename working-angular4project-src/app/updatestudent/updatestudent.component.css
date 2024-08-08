@@ -1,0 +1,45 @@
+html,
+		body {
+			height: 70%;
+		}
+	
+
+        #green {
+            
+            height: 70%;
+            text-align: left-center;
+            color: white;
+            padding: 20px;
+            background: rgb(66, 66, 66);
+            
+            
+            
+        }
+
+        a {
+            color: #dfe4e9;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+           
+        }
+
+        .container h2 {
+            text-align: left;
+            margin-left: 200px;
+            /* Additional styles for the heading if needed */
+        }
+
+        .container  {
+            
+            background: rgb(191, 223, 255);
+            width: 550px;
+        }
+
+        
+
+
+      

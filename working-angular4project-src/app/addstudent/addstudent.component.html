@@ -1,0 +1,419 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<!--Poppins  -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<html>
+
+<body>
+
+    <div class="container-fluid">
+
+
+
+        <mat-card class="card">
+            <mat-card-content>
+                <mat-tab-group [selectedIndex]="selectedTabIndex" backgroundColor="primary">
+
+                    <mat-tab label="Personal details">
+                        <form [formGroup]="myForm">
+                            <div class="tab1-content">
+                                <div class="col-md-5">
+                                    <img class="vector" src="../../assets/images/2293220.jpg" width="350"
+                                        style="border-radius:15px" height="400" />
+                                    <!-- <img class="vector" src="assets/images/Emp-detail.svg" width="300" height="400" /> -->
+                                </div>
+                                <div class="col-md-7">
+                                    <!-- <br> -->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!-- <label>Employee Name</label>&nbsp;&nbsp; -->
+                                            <mat-form-field>
+                                                <mat-label>First Name</mat-label>
+                                                <input matInput formControlName="firstName">
+
+                                                <mat-error
+                                                    *ngIf="myForm.controls['firstName'].hasError('required') && myForm.controls['firstName'].touched">
+                                                    firstName is required.
+                                                </mat-error>
+
+
+
+                                            </mat-form-field>&nbsp;
+
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- <label>Mobile</label>&nbsp;&nbsp; -->
+                                            <mat-form-field>
+                                                <mat-label>Last Name</mat-label>
+                                                <input matInput formControlName="lastName">
+                                                <mat-error
+                                                    *ngIf="myForm.controls['lastName'].hasError('required') && myForm.controls['lastName'].touched">
+                                                    lastName is required.
+                                                </mat-error>
+
+                                            </mat-form-field>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!-- <label>Gender</label>&nbsp;&nbsp; -->
+                                            <mat-form-field>
+                                                <mat-label>Phone Number</mat-label>
+                                                <input matInput formControlName="phone" pattern="[0-9]{10}">
+
+                                                <mat-error
+                                                    *ngIf="myForm.controls['phone'].hasError('required') && myForm.controls['phone'].touched">
+                                                    Phone Number is required.
+                                                </mat-error>
+                                                <mat-error
+                                                    *ngIf="myForm.controls['phone'].hasError('pattern') && myForm.controls['phone'].touched">
+                                                    Enter 10-digit number.
+                                                </mat-error>
+
+
+                                            </mat-form-field>&nbsp;
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- <label>Technical Skill</label>&nbsp;&nbsp; -->
+                                            <mat-form-field>
+                                                <mat-label>Email</mat-label>
+                                                <input matInput formControlName="email"
+                                                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                                                <mat-error
+                                                    *ngIf="myForm.controls['email'].hasError('required') && myForm.controls['email'].touched">
+                                                    Email is required.
+                                                </mat-error>
+                                                <mat-error
+                                                    *ngIf="myForm.controls['email'].hasError('pattern') && myForm.controls['email'].touched">
+                                                    Please enter a valid email
+                                                </mat-error>
+
+                                            </mat-form-field>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!-- <label>Address</label>&nbsp;&nbsp; -->
+                                            <mat-form-field>
+                                                <mat-label>Address</mat-label>
+                                                <textarea matInput formControlName="address" style="width: 100%;"
+                                                    rows="3"></textarea>
+
+                                                <mat-error
+                                                    *ngIf="myForm.controls['address'].hasError('required') && myForm.controls['address'].touched">
+                                                    address is required.
+                                                </mat-error>
+
+                                            </mat-form-field>
+
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <!-- <label>Technical Skill</label>&nbsp;&nbsp; -->
+                                            &nbsp;&nbsp;<label>Gender&nbsp;</label><br>
+
+                                            <mat-radio-group aria-label="Gender" formControlName="gender">
+                                                <mat-radio-button value="Male">Male</mat-radio-button>
+                                                <mat-radio-button value="Female">Female</mat-radio-button>
+                                            </mat-radio-group>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="tab1btn">
+
+
+                                    <div class="example-button-row ">
+
+                                        <button mat-raised-button color="primary" (click)="clear()">Clear</button>&nbsp;
+                                        <button mat-raised-button color="primary"
+                                            (click)="moveToNextTab1()">Next</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </mat-tab>
+
+                    <mat-tab label="Academic Details">
+                        <form [formGroup]="studentdetailsForm">
+                            <div class="tab2-content">
+
+                                <div class="col-md-5 tab1-values">
+
+                                    <div class="half-page-container">
+                                        <mat-card class="half-page-card">
+                                            <mat-card-content>
+                                                <b> Student Details </b>
+                                                <br><br>
+                                                <ng-container *ngIf="userFormData">
+                                                    Name:&nbsp; {{ userFormData.firstName }} {{ userFormData.lastName }}
+                                                    <br><br>
+                                                    Email Id:&nbsp; {{ userFormData.email }}
+                                                    <br><br>
+                                                    Phone Number:&nbsp; {{ userFormData.phone }}
+                                                    <br><br>
+                                                    Address:&nbsp; {{ userFormData.address }}
+                                                    <!-- <br>
+                                            Date of Birth: &nbsp;{{ userFormData.dob | date: 'MM/dd/yyyy' }} -->
+                                                    <br><br>
+                                                    Gender: &nbsp;{{ userFormData.gender }}
+                                                    <br><br><br>
+                                                </ng-container>
+
+                                            </mat-card-content>
+                                        </mat-card>
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="col-md-7">
+                                    <!-- <br> -->
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <label class="blue-label">Courses available </label>
+                                            <br>
+                                            &nbsp;
+
+
+
+                                            <div class="dropdown-container">
+                                                <mat-form-field>
+                                                    <mat-label>Courses available</mat-label>
+                                                    <mat-select formControlName="selectedOptions" multiple>
+                                                        <mat-option *ngFor="let option of options" [value]="option">{{
+                                                            option }}</mat-option>
+                                                    </mat-select>
+                                                    <mat-error
+                                                        *ngIf="studentdetailsForm.controls['selectedOptions'].hasError('required') && studentdetailsForm.controls['selectedOptions'].touched">
+                                                        At least one course is required.
+                                                    </mat-error>
+
+
+                                                </mat-form-field>
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="blue-label">Date of Birth </label>
+                                            <br><br>
+                                            <!-- <label>Mobile</label>&nbsp;&nbsp; -->
+                                            <mat-form-field>
+                                                <mat-label>Choose a date</mat-label>
+                                                <input matInput [matDatepicker]="picker" formControlName="dob">
+                                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                                <mat-datepicker-toggle matIconSuffix
+                                                    [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+
+                                                <mat-error
+                                                    *ngIf="studentdetailsForm.controls['dob'].hasError('required') && studentdetailsForm.controls['dob'].touched">
+                                                    choose your date of birth.
+                                                </mat-error>
+                                            </mat-form-field>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <mat-form-field>
+                                                <!-- <img src="assets/images/nameIcon.png" alt="" height="39" width="39"> &nbsp;&nbsp; -->
+                                                <mat-label>Name</mat-label>
+                                                <input matInput placeholder="Name" [value]="userFormDataName" readonly>
+                                            </mat-form-field>
+                                            <!-- </div> -->
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <mat-form-field>
+                                                <!-- <img src="assets/images/nameIcon.png" alt="" height="39" width="39"> &nbsp;&nbsp; -->
+                                                <mat-label>Email</mat-label>
+                                                <input matInput placeholder="Name" [value]="userFormDataEmail" readonly>
+                                            </mat-form-field>
+                                            <!-- </div> -->
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <!-- <label>Address</label>&nbsp;&nbsp; -->
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div class="tab2button">
+
+                                    <button mat-raised-button color="primary"
+                                        (click)="moveToPreviousTab()">Back</button>&nbsp;
+                                    <button mat-raised-button color="primary" (click)="clearTab2()">Clear</button>&nbsp;
+
+                                    <button mat-raised-button color="primary" (click)="moveToNextTab2()">Next</button>
+
+                                </div>
+
+
+
+                            </div>
+                        </form>
+                    </mat-tab>
+
+                    <mat-tab label="Additional Info">
+                        <!-- <form action=""> -->
+                        <form [formGroup]="tab3">
+                            <div class="tab2-content">
+                                <div class="col-md-5 tab1-values">
+
+                                    <div class="half-page-container">
+                                        <mat-card class="half-page-card">
+                                            <mat-card-content>
+                                                <b> Student Details </b>
+                                                <br>
+                                                <ng-container *ngIf="userFormData">
+                                                    Name:&nbsp; {{ userFormData.firstName }} {{ userFormData.lastName }}
+                                                    <br>
+                                                    Email Id:&nbsp; {{ userFormData.email }}
+                                                    <br>
+                                                    Phone Number:&nbsp; {{ userFormData.phone }}
+                                                    <br>
+                                                    Address:&nbsp; {{ userFormData.address }}
+                                                    <!-- <br>
+                                            Date of Birth: &nbsp;{{ userFormData.dob | date: 'MM/dd/yyyy' }} -->
+                                                    <br>
+                                                    Gender: &nbsp;{{ userFormData.gender }}
+
+                                                </ng-container>
+
+
+
+
+
+
+
+
+                                                <ng-container *ngIf="studentdetailsFormData">
+                                                    <!-- Name:&nbsp; {{ userFormData.firstName }} {{ userFormData.lastName }} -->
+
+                                                    <br><br>
+                                                    Courses: &nbsp;
+                                                    <ul>
+                                                        <li
+                                                            *ngFor="let course of studentdetailsFormData.selectedOptions">
+                                                            {{ course }}</li>
+                                                    </ul>
+                                                    <br>
+
+                                                    Date of Birth: &nbsp;{{ studentdetailsFormData.dob | date:
+                                                    'MM/dd/yyyy' }}
+
+                                                </ng-container>
+
+                                            </mat-card-content>
+                                        </mat-card>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-7">
+                                    <!-- <br> -->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!-- <label>Employee Name</label>&nbsp;&nbsp; -->
+
+                                            <label class="blue-label">Upload documents </label>
+
+                                            <br>
+                                          
+                                            <div >
+                                                
+                                                <label *ngIf="!hasFileUploaded">
+                                                    <input type="file" #doc (change)="onFileSelected($event)"
+                                                        formControlName="filerequired" accept="*/*" required="">
+
+                                                </label>
+                                                
+                                            </div>
+                                            <!-- <img  [src]="url" height="200"> <br /> -->
+                                            
+                                            <!-- <br><br> -->
+                                            <img *ngIf="hasFileUploaded || showAddedImage" [src]="url" height="200"> <br />
+                                            <button *ngIf="hasFileUploaded" (click)="removeFile()">Close</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- <label>Mobile</label>&nbsp;&nbsp; -->
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <!-- <label>Gender</label>&nbsp;&nbsp; -->
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <!-- <label>Technical Skill</label>&nbsp;&nbsp; -->
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <!-- <label>Address</label>&nbsp;&nbsp; -->
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab3button">
+
+                                    <button mat-raised-button color="primary"
+                                        (click)="moveToPreviousTab()">Back</button>&nbsp;
+
+                                    <button mat-raised-button color="primary" (click)="reload()">Reload</button>&nbsp;
+
+
+                                    <button mat-raised-button color="primary" (click)="submitform()">{{editMode?
+                                        'Update': 'Submit'}}</button>
+
+
+
+                                </div>
+
+
+
+
+
+                            </div>
+                        </form>
+                    </mat-tab>
+
+
+                </mat-tab-group>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+
+
+</body>
+
+</html>

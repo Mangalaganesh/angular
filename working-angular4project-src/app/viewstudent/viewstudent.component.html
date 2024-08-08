@@ -1,0 +1,67 @@
+
+
+<div class="container">
+    <h3>List of Students </h3>
+
+    <table class="table">
+        <thead class="table">
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Email ID</th>
+                <th>Phone number</th>
+                <th>Address</th>
+                <th>&nbsp;&nbsp;courses</th>
+
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let student of getstudent; let i = index">
+                <td>{{ i + 1 }}.</td> <!-- Add 1 to index to start from 1 -->
+                <td>{{ student.firstName }} {{ student.lastName }}</td>
+                
+                <td>{{ student.email }}</td>
+                <td>{{ student.phone }}</td>
+                <td>{{ student.address }}</td>
+                <td>
+                    <ng-container>
+                        <ul>
+                            <li *ngFor="let co of student.courses">{{ co.name }}</li>
+                        </ul>
+                    </ng-container>
+                </td>
+
+
+
+                <td>
+
+
+                    <!-- <a (click)="openEditDialog(student.student_id)">
+                        <i class="fas fa-pen hand-cursor"></i> &nbsp;
+
+                    </a> -->
+
+                    <a (click)="editstudent(student)">
+                        <i class="fas fa-pen hand-cursor"></i> &nbsp;
+
+                    </a>
+
+
+                    &nbsp;
+
+                    <a (click)="deleteStudent(student)">
+                        <i class="fas fa-trash hand-cursor" style="color: red;"></i> &nbsp;
+
+                    </a>
+
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+
+</div>
+
